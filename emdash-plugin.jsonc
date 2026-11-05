@@ -1,0 +1,57 @@
+{
+	"$schema": "./node_modules/@emdash-cms/plugin-cli/schemas/emdash-plugin.schema.json",
+
+	"slug": "bluesky-share",
+	"publisher": "did:plc:myrtyr2rsjiivzlp5m6qevv5",
+
+	"license": "MIT",
+	"author": { "name": "Rie Tamura", "url": "https://bsky.app/profile/rietamura.com" },
+	"security": { "url": "https://github.com/RieTamura/EmDash-To-Bluesky/issues" },
+	"name": "EmDash To Bluesky",
+	"description": "Shares a post on Bluesky once when it is first published, with its title, link and featured image. It connects only to Bluesky.",
+	"keywords": ["bluesky", "atproto", "social", "share", "crosspost"],
+	"repo": "https://github.com/RieTamura/EmDash-To-Bluesky",
+
+	"capabilities": [
+		// Read the entry and its public URL.
+		"content:read",
+		// Send the featured image to Bluesky as the link card's thumbnail.
+		"media:bytes:read",
+		"network:request"
+	],
+	// Only Bluesky's own entry point, so the app password cannot go anywhere else.
+	"allowedHosts": ["bsky.social"],
+	"storage": {
+		// One record per article, keyed "<collection>:<translation group or id>".
+		"shares": { "indexes": ["status", "updatedAt"] }
+	},
+
+	"admin": {
+		"pages": [{ "path": "/shares", "label": "Bluesky Share", "icon": "share" }],
+		"settingsSchema": {
+			"handle": {
+				"label": "Bluesky handle / Bluesky のハンドル",
+				"description": "Example: name.bsky.social. Leave empty to stop sharing. / 例：name.bsky.social。空にすると投稿しません。",
+				"type": "string"
+			},
+			"appPassword": {
+				"label": "App password / アプリパスワード",
+				"description": "Make one just for this plugin in Bluesky's settings. It can post to your account. / Bluesky の設定で、このプラグイン専用に作ってください。あなたのアカウントに投稿できるパスワードです。",
+				"type": "secret"
+			},
+			"collections": {
+				"label": "Collections / 投稿するコレクション",
+				"description": "Separate with commas. Don't add bluesky: imported posts would be posted again. / カンマで区切ります。bluesky は入れないでください。取り込んだ投稿をまた投稿してしまいます。",
+				"type": "string",
+				"default": "posts"
+			},
+			"template": {
+				"label": "Post text / 投稿の文面",
+				"description": "You can use {title}, {url} and {excerpt}. / {title}、{url}、{excerpt} が使えます。",
+				"type": "string",
+				"multiline": true,
+				"default": "{title}\n\n{url}"
+			}
+		}
+	}
+}
