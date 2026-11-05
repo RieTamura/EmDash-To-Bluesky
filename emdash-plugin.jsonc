@@ -11,6 +11,12 @@
 	"description": "Shares a post on Bluesky once when it is first published, with its title, link and featured image. It connects only to Bluesky.",
 	"keywords": ["bluesky", "atproto", "social", "share", "crosspost"],
 	"repo": "https://github.com/RieTamura/EmDash-To-Bluesky",
+	"release": {
+		"artifacts": {
+			"icon": { "file": "./images/icon.png" },
+			"banner": { "file": "./images/banner.png" }
+		}
+	},
 
 	"capabilities": [
 		// Read the entry and its public URL.
