@@ -10,10 +10,12 @@ import { buildPost, DEFAULT_TEMPLATE, type BlobRef } from "./post";
  * sent, so a crash can leave a post unsent (shown in the admin, with a button
  * to send it) but can never send it twice by itself.
  *
- * A sandbox allows 10 subrequests per run, and every storage, settings, content
- * and media call counts as well as every fetch. A publish makes 9: settings,
- * kv, claim, public URL, session, image bytes, image upload, post, record. A
- * resend from the admin makes 10. Count again before adding a call.
+ * A sandbox allows 30 subrequests per run from EmDash 1.5 (10 before 1.5, or
+ * with a custom runner that keeps the old limit), and every storage, settings,
+ * content and media call counts as well as every fetch. A publish makes 9:
+ * settings, kv, claim, public URL, session, image bytes, image upload, post,
+ * record. A resend from the admin makes 10. Stay within 10 so older sites work
+ * too, and count again before adding a call.
  */
 
 type ShareStatus = "pending" | "shared" | "failed" | "skipped";

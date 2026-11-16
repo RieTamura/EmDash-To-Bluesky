@@ -34,7 +34,7 @@ There are two ways to install it.
 
 In the admin, open **Registry**, search for **EmDash To Bluesky** and install it.
 
-The sandbox limits each run to 50 ms of CPU and 10 subrequests. The plugin is written to use 9 for a publish and 10 for a resend from the admin. **It hasn't been tried on a real sandbox yet.** If it doesn't work, please [open an issue](https://github.com/RieTamura/EmDash-To-Bluesky/issues). A large image is the most likely thing to hit the CPU limit.
+The sandbox limits each run to 50 ms of CPU and 30 subrequests (10 before EmDash 1.5). The plugin is written to use 9 for a publish and 10 for a resend from the admin, so it stays within the older limit too. **It hasn't been tried on a real sandbox yet.** If it doesn't work, please [open an issue](https://github.com/RieTamura/EmDash-To-Bluesky/issues). A large image is the most likely thing to hit the CPU limit.
 
 ### From GitHub
 
